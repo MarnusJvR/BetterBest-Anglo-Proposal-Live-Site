@@ -287,7 +287,7 @@ img {
   &-a {
     .about-info {
       .box-image {
-        height: 300px;
+        height: 400px;
         img {
           max-height: 100%;
           width: auto;
@@ -308,8 +308,40 @@ img {
     .bio {
       grid-area: bio;
       border-left: 3px solid $main-color;
+      border-right: 3px solid $main-color;
       padding: 0.8rem;
       background: $medium-color;
+      ul {
+        text-align: center;
+        padding: 2rem;
+      }
+      li {
+        transition: all 0.7s;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        border: 1px solid $light-color;
+        &:nth-child(odd) {
+          background: $dark-color;
+          color: $light-color;
+          &:hover {
+            background: $main-color;
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+            font-size: 1.15rem;
+            color: $dark-color;
+          }
+        }
+        &:nth-child(even) {
+          background: $main-color;
+          &:hover {
+            background: $dark-color;
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+            font-size: 1.15rem;
+            color: $light-color;
+          }
+        }
+      }
     }
 
     .award-1 {
@@ -396,6 +428,37 @@ img {
       padding-bottom: 1rem;
     }
     .project-detail {
+      ul {
+        text-align: center;
+        padding: 2rem;
+      }
+      li {
+        transition: all 0.7s;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        border: 1px solid $light-color;
+        &:nth-child(odd) {
+          background: $dark-color;
+          color: $light-color;
+          &:hover {
+            background: $main-color;
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+            font-size: 1.15rem;
+            color: $dark-color;
+          }
+        }
+        &:nth-child(even) {
+          background: $main-color;
+          &:hover {
+            background: $dark-color;
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+            font-size: 1.15rem;
+            color: $light-color;
+          }
+        }
+      }
       margin-top: 3rem;
       display: grid;
       grid-gap: 3rem;

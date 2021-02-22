@@ -364,7 +364,7 @@ img {
   grid-template-areas: "bioimage bio bio" "aw1 aw2 aw3";
   grid-gap: 1.2rem; }
   #about-a .about-info .box-image {
-    height: 300px; }
+    height: 400px; }
     #about-a .about-info .box-image img {
       max-height: 100%;
       width: auto; }
@@ -375,8 +375,34 @@ img {
 #about-a .bio {
   grid-area: bio;
   border-left: 3px solid #ff5100;
+  border-right: 3px solid #ff5100;
   padding: 0.8rem;
   background: #ccc; }
+  #about-a .bio ul {
+    text-align: center;
+    padding: 2rem; }
+  #about-a .bio li {
+    transition: all 0.7s;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border: 1px solid #f4f4f4; }
+    #about-a .bio li:nth-child(odd) {
+      background: #333;
+      color: #f4f4f4; }
+      #about-a .bio li:nth-child(odd):hover {
+        background: #ff5100;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+        font-size: 1.15rem;
+        color: #333; }
+    #about-a .bio li:nth-child(even) {
+      background: #ff5100; }
+      #about-a .bio li:nth-child(even):hover {
+        background: #333;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+        font-size: 1.15rem;
+        color: #f4f4f4; }
 
 #about-a .award-1 {
   grid-area: aw1; }
@@ -443,6 +469,31 @@ img {
   display: grid;
   grid-gap: 3rem;
   grid-template-columns: repeat(2, 1fr); }
+  #work-b .project-detail ul {
+    text-align: center;
+    padding: 2rem; }
+  #work-b .project-detail li {
+    transition: all 0.7s;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border: 1px solid #f4f4f4; }
+    #work-b .project-detail li:nth-child(odd) {
+      background: #333;
+      color: #f4f4f4; }
+      #work-b .project-detail li:nth-child(odd):hover {
+        background: #ff5100;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+        font-size: 1.15rem;
+        color: #333; }
+    #work-b .project-detail li:nth-child(even) {
+      background: #ff5100; }
+      #work-b .project-detail li:nth-child(even):hover {
+        background: #333;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+        font-size: 1.15rem;
+        color: #f4f4f4; }
   #work-b .project-detail .fas {
     color: #ff5100;
     padding-bottom: 0.4rem; }
