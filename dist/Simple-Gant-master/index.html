@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Simple Gantt</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        background: #ccc;
+      }
+      .container {
+        width: 80%;
+        margin: 0 auto;
+      }
+      /* custom class */
+      .gantt .bar-milestone .bar {
+        fill: tomato;
+      }
+    </style>
+    <link rel="stylesheet" href="frappe-gantt.css" />
+    <script src="frappe-gantt.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="pageHeader">
+        <a href="../index.html" class="myButton">Back to Landing</a>
+        <h1><b>Project Management Portal</b></h1>
+        <h4><b>Project Instance:</b> ANGLO / BETTER BEST TEMP SYSTEM</h4>
+        <h4><b>Administrator:</b> M Janse van Rensburg</h4>
+        <h4><b>Dependencies:</b> NULL</h4>
+        <h4><b>Project Status:</b> INACTIVE</h4>
+        <h4><b>Risk Alerts:</b> NONE</h4>
+      </div>
+
+      <div class="gantt-target"></div>
+    </div>
+    <script>
+      var tasks = [
+        {
+          start: "2021-05-03",
+          end: "2021-06-11",
+          name: "Preparation & Approval of Management Plans",
+          id: "managementPlans",
+          progress: 40,
+        },
+        {
+          start: "2021-05-03",
+          end: "2021-05-07",
+          name: "Project Team Onboarding: Induction & Medicals",
+          id: "Task 0",
+          progress: 0,
+        },
+        {
+          start: "2021-05-10",
+          end: "2021-05-14",
+          name: "Project Team Onboarding: SHE Training & Security Clearance",
+          id: "Task 1",
+          progress: 0,
+          dependencies: "Task 0",
+        },
+        {
+          start: "2021-05-17",
+          end: "2021-05-21",
+          name:
+            "Project Team Onboarding:Specialized training for on-site line managers",
+          id: "Task 2",
+          progress: 0,
+          dependencies: "Task 1",
+        },
+        {
+          start: "2021-05-10",
+          end: "2021-05-14",
+          name: "Drafting of Training Provider Scope of Work",
+          id: "Task 3",
+          progress: 60,
+        },
+        {
+          start: "2021-05-17",
+          end: "2021-05-21",
+          name:
+            "Drafting & Approval of Training Provider Minimum Selection Criteria",
+          id: "Task 4",
+          progress: 50,
+          dependencies: "Task 3",
+        },
+
+        {
+          start: "2021-05-24",
+          end: "2021-05-25",
+          name: "Invite prefered suppliers to bid",
+          id: "Task 5",
+          progress: 0,
+          dependencies: "Task 4",
+        },
+        {
+          start: "2021-05-24",
+          end: "2021-05-25",
+          name: "Advertise bid",
+          id: "Task 6",
+          progress: 0,
+          dependencies: "Task 3",
+        },
+        {
+          start: "2021-05-24",
+          end: "2021-05-29",
+          name: "Setup online bidding portal, Biding & Provider Selection",
+          id: "bidingPortal",
+          progress: 10,
+        },
+        {
+          start: "2021-05-25",
+          end: "2021-06-11",
+          name: "Bidding portal open",
+          id: "Task 7",
+          progress: 60,
+          dependencies: "bidingPortal",
+        },
+        {
+          start: "2021-06-11",
+          end: "2021-06-20",
+          name: "Evaluate provider bids & select providers",
+          id: "eval",
+          progress: 0,
+          dependencies: "Task 7",
+        },
+        {
+          start: "2021-06-20",
+          end: "2021-07-09",
+          name: "Provider Contracting",
+          id: "contract",
+          progress: 0,
+          dependencies: "eval",
+        },
+        {
+          start: "2021-07-09",
+          end: "2021-07-31",
+          name: "Setting up providers to ensure training readiness",
+          id: "setup",
+          progress: 0,
+        },
+        {
+          start: "2021-07-09",
+          end: "2021-07-15",
+          name: "Evaluate course tecnical requirements (tools & equipment)",
+          id: "evaluateEq",
+          progress: 70,
+          dependencies: "setup",
+        },
+        {
+          start: "2021-07-09",
+          end: "2021-07-15",
+          name: "Evaluate academic course work",
+          id: "coursework",
+          progress: 70,
+          dependencies: "setup",
+        },
+        {
+          start: "2021-07-09",
+          end: "2021-07-15",
+          name: "Register provider users to management system",
+          id: "register",
+          progress: 0,
+          dependencies: "setup",
+        },
+        {
+          start: "2021-07-15",
+          end: "2021-07-31",
+          name: "Create course instances: add cirriculum to management system",
+          id: "cirr",
+          progress: 0,
+          dependencies: "register",
+        },
+        {
+          start: "2021-07-15",
+          end: "2021-07-31",
+          name: "Provider orientation & Management System Training",
+          id: "provOrientation",
+          progress: 0,
+          dependencies: "register",
+          dependencies: "register",
+        },
+        {
+          start: "2021-05-01",
+          end: "2021-07-31",
+          name:
+            "Planning, construction, equiping and general preparation of facilities",
+          id: "construct",
+          progress: 0,
+        },
+        {
+          start: "2021-05-01",
+          end: "2021-05-31",
+          name:
+            "Evaluate construction progress relating to facilities (AAP team & property owners)",
+          id: "evalconstr",
+          progress: 0,
+          dependencies: "construct",
+        },
+        {
+          start: "2021-05-01",
+          end: "2021-05-31",
+          name:
+            "Conduct specialized equipment audit and submit spec lists for approval (COVID 19 & specialized access control)",
+          id: "access",
+          progress: 0,
+          dependencies: "construct",
+        },
+        {
+          start: "2021-06-01",
+          end: "2021-06-30",
+          name: "procure & install specialized equipment",
+          id: "install",
+          progress: 0,
+          dependencies: "access",
+        },
+        {
+          start: "2021-05-01",
+          end: "2021-05-31",
+          name:
+            "Conduct equipment/furniture needs audit and draft procurement lists",
+          id: "procurement",
+          progress: 0,
+          dependencies: "construct",
+        },
+        {
+          start: "2021-06-01",
+          end: "2021-06-30",
+          name: "Identify suppliers and procure equipment",
+          id: "buy",
+          progress: 0,
+          dependencies: "procurement",
+        },
+        {
+          start: "2021-07-01",
+          end: "2021-07-31",
+          name:
+            "Run checks against training requirements and make corrections where needed",
+          id: "corrections",
+          progress: 0,
+          dependencies: "buy",
+        },
+        {
+          start: "2021-05-01",
+          end: "2021-06-30",
+          name: "Procure support services",
+          id: "ss",
+          progress: 0,
+        },
+        {
+          start: "2021-05-01",
+          end: "2021-05-31",
+          name: "Identify and cost all support services",
+          id: "ss1",
+          progress: 0,
+          dependencies: "ss",
+        },
+        {
+          start: "2021-06-01",
+          end: "2021-06-30",
+          name: "Procurement of support services",
+          id: "ss2",
+          progress: 0,
+          dependencies: "ss1",
+        },
+        {
+          start: "2021-05-01",
+          end: "2021-07-31",
+          name:
+            "MANAGEMENT SYSTEM: Setting up the project, create dependencies, building instances, uploading users and dashboards",
+          id: "MS",
+          progress: 0,
+        },
+        {
+          start: "2021-05-01",
+          end: "2021-05-15",
+          name:
+            "Creating the custom project instances in the NSSA management system",
+          id: "MS1",
+          progress: 70,
+          dependencies: "MS",
+        },
+        {
+          start: "2021-05-15",
+          end: "2021-05-30",
+          name:
+            "Introduce dependencies, creating user groups and billing structure & establishing appropriate process flow",
+          id: "MS2",
+          progress: 0,
+          dependencies: "MS1",
+        },
+        {
+          start: "2021-06-01",
+          end: "2021-06-30",
+          name:
+            "Registering users, enrolling learners, and creating support documentation data banks for ease ref",
+          id: "MS3",
+          progress: 0,
+          dependencies: "MS2",
+        },
+        {
+          start: "2021-06-01",
+          end: "2021-06-30",
+          name:
+            "Registering users, enrolling learners, and creating support documentation data banks for ease ref",
+          id: "MS3",
+          progress: 0,
+          dependencies: "MS2",
+        },
+        {
+          start: "2021-07-01",
+          end: "2021-07-31",
+          name: "Verify and upload support documentation",
+          id: "MS4",
+          progress: 0,
+          dependencies: "MS3",
+        },
+        {
+          start: "2021-07-01",
+          end: "2021-07-31",
+          name: "Customize reporting dashboards",
+          id: "MS5",
+          progress: 0,
+          dependencies: "MS3",
+        },
+        {
+          start: "2021-05-01",
+          end: "2021-07-31",
+          name: "Registering Learners Onto the Project (turnkey)",
+          id: "reg",
+          progress: 0,
+        },
+        {
+          start: "2021-05-01",
+          end: "2021-05-31",
+          name: "Setup payrol systems for staff & learners",
+          id: "pay",
+          progress: 100,
+          dependencies: "reg",
+        },
+        {
+          start: "2021-05-01",
+          end: "2021-07-31",
+          name:
+            "Recieve data base of candidate, schedule candadidate interviews, make selections and register",
+          id: "pay1",
+          progress: 0,
+          dependencies: "reg",
+        },
+        {
+          start: "2021-07-20",
+          end: "2021-07-31",
+          name: "Issue PPE & Candidate Orientation",
+          id: "pay2",
+          progress: 0,
+          dependencies: "pay1",
+        },
+        {
+          start: "2021-07-20",
+          end: "2021-07-31",
+          name:
+            "MANAGEMENT SYSTEM: Register students to course instances and export overal training schedule",
+          id: "pay2",
+          progress: 0,
+          dependencies: "pay1",
+        },
+        {
+          start: "2021-06-20",
+          end: "2021-07-31",
+          name:
+            "MANAGEMENT SYSTEM: After building the course instances, the actual course schedules are exported directly from the system",
+          id: "mas",
+          progress: 0,
+        },
+        {
+          start: "2021-06-20",
+          end: "2021-07-31",
+          name:
+            "MANAGEMENT SYSTEM: Students registered to course instances are automatically placed in that particular timeframe most appropriate",
+          id: "mas",
+          progress: 0,
+        },
+        {
+          start: "2021-06-20",
+          end: "2021-07-31",
+          name:
+            "MANAGEMENT SYSTEM: Automated communication. As students are registered, all forms and communications are automated from system",
+          id: "mas",
+          progress: 0,
+        },
+      ];
+      var gantt_chart = new Gantt(".gantt-target", tasks, {
+        on_click: function (task) {
+          console.log(task);
+        },
+        on_date_change: function (task, start, end) {
+          console.log(task, start, end);
+        },
+        on_progress_change: function (task, progress) {
+          console.log(task, progress);
+        },
+        on_view_change: function (mode) {
+          console.log(mode);
+        },
+        view_mode: "Week",
+        language: "en",
+      });
+      console.log(gantt_chart);
+    </script>
+  </body>
+</html>
